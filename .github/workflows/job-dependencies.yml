@@ -29,7 +29,11 @@ jobs:
         with:
           name: dist-files
           path: dist
-      
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -42,6 +46,3 @@ jobs:
           ls -R dist
           echo "Deployment successful!"
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
